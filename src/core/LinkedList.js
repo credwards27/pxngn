@@ -140,6 +140,11 @@ export default class LinkedList {
         data is null.
     */
     pop() {
+        var node = this.getLast(),
+            data = node ? node.data : null;
+        
+        this.removeNode(node);
+        return data;
     }
     
     /* Removes the first node from the list and returns its data. Similar to
@@ -150,6 +155,11 @@ export default class LinkedList {
         is null.
     */
     shift() {
+        var node = this.getFirst(),
+            data = node ? node.data : null;
+        
+        this.removeNode(node);
+        return data;
     }
     
     /* Removes a node from the list and destroys it.
