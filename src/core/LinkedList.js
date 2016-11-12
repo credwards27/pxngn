@@ -187,6 +187,8 @@ export default class LinkedList {
         Returns the first node, or null if the list is empty.
     */
     getFirst() {
+        var node = this._head[this._next];
+        return node !== this._tail ? node : null;
     }
     
     /* Gets the last node in the list.
@@ -194,6 +196,8 @@ export default class LinkedList {
         Returns the last node, or null if the list is empty.
     */
     getLast() {
+        var node = this._tail[this._prev];
+        return node !== this._head ? node : null;
     }
     
     /* Iterates through each node in the list.
