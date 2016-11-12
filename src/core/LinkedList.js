@@ -185,6 +185,8 @@ export default class LinkedList {
         Returns the list.
     */
     each(callback, thisArg) {
+        return this._iterate(callback, thisArg, this._head, this._tail,
+            this._next);
     }
     
     /* Iterates through the list in reverse.
@@ -195,6 +197,8 @@ export default class LinkedList {
         Returns the list.
     */
     eachReverse(callback, thisArg) {
+        return this._iterate(callback, thisArg, this._tail, this._head,
+            this._prev);
     }
     
     /* Reverses the list.
@@ -226,5 +230,32 @@ export default class LinkedList {
         Returns the list.
     */
     _iterate(callback, thisArg, head, tail, nextIndex) {
+        if (typeof callback !== "function") {
+            return this;
+        }
+        
+        // Normalize parameters
+        thisArg = undefined !== thisArg ? thisArg : false;
+        nextIndex = nextIndex ? 1 : 0;
+        
+        var prevIndex = nextIndex ^ 1,
+            prevNode = head,
+            curr = prevNode[nextIndex];
+        
+        // Iterate
+        while (tail !== curr && curr[nextIndex]) {
+            prevNode = curr[prevIndex];
+            
+            // Run callback
+            if (false === callback.call(thisArg || curr, curr.data, curr)) {
+                break;
+            }
+            
+            // Get node for next iteration (use previous node's pointer if
+            // current node was removed in callback)
+            curr = curr[nextIndex] || prevNode[nextIndex];
+        }
+        
+        return this;
     }
 }
