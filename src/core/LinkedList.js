@@ -252,6 +252,20 @@ export default class LinkedList {
         Returns the list.
     */
     reverse() {
+        var next = this._next,
+            prev = this._prev,
+            tempHead = this._head,
+            tempTail = this._tail;
+        
+        // Flip head and tail
+        this._head = tempTail;
+        this._tail = tempHead;
+        
+        // Flip directions
+        this._next ^= 1;
+        this._prev ^= 1;
+        
+        return this;
     }
     
     /* Checks if the list is reversed.
@@ -259,6 +273,7 @@ export default class LinkedList {
         Returns true if the list is reversed, false otherwise.
     */
     isReversed() {
+        return 0 === this._next;
     }
     
     /* Iterates through the list with an arbitrary starting point, ending point,
