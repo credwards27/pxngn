@@ -51,7 +51,19 @@ export default class LinkedList {
     
     /* Destructor for LinkedList.
     */
-    destroy() {}
+    destroy() {
+        this.each(function(d, n) {
+            this.removeNode(n);
+        }, this);
+        
+        this._head[0] = null;
+        this._head[1] = null;
+        this._tail[0] = null;
+        this._tail[1] = null;
+        
+        this._head = null;
+        this._tail = null;
+    }
     
     //
     // STATIC METHODS
@@ -148,6 +160,26 @@ export default class LinkedList {
         removed.
     */
     removeNode(node) {
+        if (!node) { return false; }
+        
+        var next = this._next,
+            prev = this._prev,
+            nodeNext = node[next],
+            nodePrev = node[prev];
+        
+        // Exit if the node is not connected to other nodes
+        if (!nodeNext || !nodePrev) { return false; }
+        
+        // Remove node from the list
+        nodeNext[prev] = nodePrev;
+        nodePrev[next] = nodeNext;
+        
+        // Destroy node
+        node[next] = null;
+        node[prev] = null;
+        node.data = null;
+        
+        return true;
     }
     
     /* Gets the first node in the list.
