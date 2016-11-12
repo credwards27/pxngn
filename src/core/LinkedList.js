@@ -34,9 +34,19 @@ export default class LinkedList {
     
     /* Constructor for LinkedList.
         
-        data - Item or array of items to be added on instantiation.
+        ...data - One or more items to be added on instantiation.
     */
-    constructor(data) {
+    constructor(...data) {
+        // Connect head and tail nodes by default
+        this._head[this._next] = this._tail;
+        this._tail[this._prev] = this._head;
+        
+        // Add provided data
+        if (data.length) {
+            for (var i=0, l=data.length; i<l; ++i) {
+                this.append(data[i]);
+            }
+        }
     }
     
     /* Destructor for LinkedList.
@@ -58,6 +68,7 @@ export default class LinkedList {
         Returns the new node, or null if no node was added.
     */
     append(data) {
+        return this.insertBefore(data, this._tail);
     }
     
     /* Prepends an item to the beginning of the list.
@@ -67,6 +78,7 @@ export default class LinkedList {
         Returns the new node, or null if no node was added.
     */
     prepend(data) {
+        return this.insertAfter(data, this._head);
     }
     
     /* Inserts data after a given node.
@@ -77,6 +89,23 @@ export default class LinkedList {
         Returns the new node, or null if no node was added.
     */
     insertAfter(data, after) {
+        if (typeof after !== "object") { return null; }
+        
+        var next = this._next,
+            prev = this._prev,
+            tempNext = after[next];
+        
+        // Create new node
+        data = { data: data };
+        
+        // Link new node
+        data[next] = tempNext;
+        data[prev] = after
+        after[next] = data;
+        tempNext[prev] = data;
+        
+        // Return new node
+        return data;
     }
     
     /* Inserts data before a given node.
@@ -87,6 +116,8 @@ export default class LinkedList {
         Returns the new node, or null if no node was added.
     */
     insertBefore(data, before) {
+        if (typeof before !== "object") { return null; }
+        return this.insertAfter(data, before[this._prev]);
     }
     
     /* Removes the last node from the list and returns its data. Similar to
