@@ -218,8 +218,11 @@ export default class LinkedList {
                 node - Node at the current iteration.
             
             Returning explicitly false from the callback will stop iteration.
+            Returning anything else will continue iteration.
+            
             In addition to the node parameter, 'this' in the callback function
-            refers to the node at the current iteration.
+            refers to the node at the current iteration, as long as thisArg is
+            undefined.
             
             Callbacks may remove nodes with removeNode() without affecting
             iteration, though doing so may cause problems if other iterations
