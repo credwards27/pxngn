@@ -1,0 +1,65 @@
+node_modules/
+.node-version
+
+dist/
+
+#
+# Common files
+#
+
+# Compiled source #
+###################
+*.com
+!*.com/
+*.class
+*.exe
+*.o
+*.pyc
+*.so
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+.netrwhist
+.sass-cache/
+sass-cache/
+ 
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE generated files #
+#######################
+_notes/
+*~
+*#
+*.bak
+*.pyo
+*.swp
+*.buildpath
+*.project
+*.settings
+*.sublime-project
+*.sublime-workspace
+.idea/workspace.xml
+.idea/tasks.xml
+sftp-config.json
+nbproject/
+
+# Temp files *
+##############
+~*
+
+# Common binary files #
+#######################
+*.ai
+*.psd
+

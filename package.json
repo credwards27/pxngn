@@ -1,0 +1,36 @@
+{
+  "name": "pxngn",
+  "version": "0.0.1",
+  "description": "A 2D JavaScript game and animation engine.",
+  "engines": {
+    "node": ">=8.12.0"
+  },
+  "scripts": {
+    "install": "gulp js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "credwards27",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/credwards27/pxngn.git"
+  },
+  "bugs": {
+    "url": "https://github.com/credwards27/pxngn/issues"
+  },
+  "devDependencies": {
+    "del": "~3.0.0"
+  },
+  "dependencies": {
+    "@babel/core": "~7.1.0",
+    "@babel/plugin-proposal-class-properties": "~7.1.0",
+    "@babel/preset-env": "~7.1.0",
+    "@babel/register": "~7.0.0",
+    "babel-plugin-transform-builtin-extend": "~1.1.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-babel": "~8.0.0",
+    "gulp-changed": "~3.2.0",
+    "gulp-plumber": "~1.2.0",
+    "gulp-sourcemaps": "~2.6.4"
+  }
+}
